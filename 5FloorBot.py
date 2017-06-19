@@ -36,7 +36,7 @@ while Retry:
     if not PTTCrawler.isLoginSuccess():
         PTTCrawler.Log('Login fail')
     else:
-        #PTTCrawler.setLogLevel(PTT.LogLevel_DEBUG)
+        #PTTCrawler.setLogLevel(PTTCrawler.LogLevel_DEBUG)
         LastIndex = 0
         LastIndexList = [0]
         
@@ -49,7 +49,7 @@ while Retry:
                 if not len(LastIndexList) == 0:
                     LastIndex = LastIndexList.pop()
                 ErrorCode, LastIndexList = PTTCrawler.getNewPostIndexList(Board, LastIndex)
-                if ErrorCode != PTT.Success:
+                if ErrorCode != PTTCrawler.Success:
                     PTTCrawler.Log('Get newest list error: ' + str(ErrorCode))
                     time.sleep(1)
                     continue
@@ -66,13 +66,13 @@ while Retry:
                         PTTCrawler.Log('Detected ' + str(NewPostIndex))
                         
                         ErrorCode, Post = PTTCrawler.getPostInfoByIndex(Board, NewPostIndex)
-                        if ErrorCode == PTT.PostDeleted:
+                        if ErrorCode == PTTCrawler.PostDeleted:
                             PTTCrawler.Log('Post has been deleted')
                             continue
-                        if ErrorCode == PTT.WebFormatError:
+                        if ErrorCode == PTTCrawler.WebFormatError:
                             PTTCrawler.Log('Web structure error')
                             continue
-                        if ErrorCode != PTT.Success:
+                        if ErrorCode != PTTCrawler.Success:
                             PTTCrawler.Log('Get post by index fail')
                             continue
                         if Post == None:
@@ -92,7 +92,7 @@ while Retry:
                             #PTTCrawler.Log('Push: ' + PushContent)
                             ErrorCode = PTTCrawler.pushByIndex(Board, PTTCrawler.PushType_Push, PushContent, NewPostIndex)
                             
-                            if ErrorCode == PTT.Success:
+                            if ErrorCode == PTTCrawler.Success:
                                 #PTTCrawler.Log('Push success')
                                 pass
                             else:
