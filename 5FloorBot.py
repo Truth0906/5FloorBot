@@ -6,6 +6,7 @@ import json
 import getpass
 sys.path.append('..\\PTTCrawlerLibrary')
 import PTT
+print('Welcome to 5FloorBot v 1.0.17.0621')
 
 # If you want to automatically login define Account.txt
 # {"ID":"YourID", "Password":"YourPW"}
@@ -14,8 +15,8 @@ try:
         Account = json.load(AccountFile)
         ID = Account['ID']
         Password = Account['Password']
+        print('Auto ID password mode')
 except FileNotFoundError:
-    print('Welcome to 5FloorBot v 1.0.17.0618')
     ID = input('Input ID: ')
     Password = getpass.getpass('Input password: ')
 
@@ -88,7 +89,7 @@ else:
                     if Post == None:
                         PTTCrawler.Log('Post is empty')
                         continue
-                    PTTCrawler.Log(Post.getPostContent())
+                    #PTTCrawler.Log(Post.getPostContent())
                     if isIDinPost(Post.getPostContent()) or isIDinPost(Post.getTitle()):
                         PTTCrawler.Log('User is not allow push')
                         continue
