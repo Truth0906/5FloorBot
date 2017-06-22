@@ -46,13 +46,13 @@ def isIDinPost(PostContent):
         if not i.lower() in PostContent.lower():
             return False
     return True
-
+'''
 TestString = 'QQ Ｃｏｄｉｎｇｍａｎ'
 print(TestString)
 print(isIDinPost(TestString))
 print(TestString)
 sys.exit()
-
+'''
 Board = PushList['Board']
 Retry = True
 
