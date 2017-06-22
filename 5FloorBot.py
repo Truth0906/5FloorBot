@@ -36,18 +36,23 @@ def isIDinPost(PostContent):
     for i in range(len(BigUpperLetterList)):
         PostContent = PostContent.replace(list(BigUpperLetterList)[i], list(LetterList)[i])
         PostContent = PostContent.replace(list(BigLowerLetterList)[i], list(LetterList)[i])
-        
+    
+    NumberList = '0123456789'
+    BigNumberList = '０１２３４５６７８９'
+    for i in range(len(NumberList)):
+        PostContent = PostContent.replace(list(BigNumberList)[i], list(NumberList)[i])
+    
     for i in list(ID):
         if not i.lower() in PostContent.lower():
             return False
     return True
-'''
+
 TestString = 'QQ Ｃｏｄｉｎｇｍａｎ'
 print(TestString)
 print(isIDinPost(TestString))
 print(TestString)
 sys.exit()
-'''
+
 Board = PushList['Board']
 Retry = True
 
