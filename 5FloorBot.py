@@ -6,7 +6,7 @@ import json
 import getpass
 sys.path.append('..\\PTTCrawlerLibrary')
 import PTT
-print('Welcome to 5FloorBot v 1.0.17.0621')
+print('Welcome to 5FloorBot v 1.0.17.0622')
 
 # If you want to automatically login define Account.txt
 # {"ID":"YourID", "Password":"YourPW"}
@@ -28,14 +28,24 @@ except FileNotFoundError:
     sys.exit()
 
 def isIDinPost(PostContent):
+    
+    LetterList = 'abcdefghijklmnopqrstuvwxyz'
+    BigUpperLetterList = 'ＡＢＣＤＥＦＧＨＩＪＫＬＭＮＯＰＱＲＳＴＵＶＷＸＹＺ'
+    BigLowerLetterList = 'ａｂｃｄｅｆｇｈｉｊｋｌｍｎｏｐｑｒｓｔｕｖｗｘｙｚ'
+    
+    for i in range(len(BigUpperLetterList)):
+        PostContent = PostContent.replace(list(BigUpperLetterList)[i], list(LetterList)[i])
+        PostContent = PostContent.replace(list(BigLowerLetterList)[i], list(LetterList)[i])
+        
     for i in list(ID):
         if not i.lower() in PostContent.lower():
             return False
     return True
 '''
-TestString = 'QQ c_odingMAdfsdfn'
-
+TestString = 'QQ Ｃｏｄｉｎｇｍａｎ'
+print(TestString)
 print(isIDinPost(TestString))
+print(TestString)
 sys.exit()
 '''
 Board = PushList['Board']
@@ -47,7 +57,7 @@ PTTCrawler = PTT.Crawler(ID, Password, False)
 if not PTTCrawler.isLoginSuccess():
     PTTCrawler.Log('Login fail')
 else:
-    #PTTCrawler.setLogLevel(PTTCrawler.LogLevel_DEBUG)
+    PTTCrawler.setLogLevel(PTTCrawler.LogLevel_DEBUG)
     LastIndex = 0
     LastIndexList = [0]
     
