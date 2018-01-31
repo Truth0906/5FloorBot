@@ -4,12 +4,11 @@ import time
 import random
 import json
 import getpass
-sys.path.append('..\\PTTCrawlerLibrary')
-import PTT
-print('Welcome to 5FloorBot v 1.0.17.0622')
+from PTTLibrary import PTT
+print('Welcome to 5FloorBot v 1.0.18.0131')
 
-# If you want to automatically login define Account.txt
-# {"ID":"YourID", "Password":"YourPW"}
+# 如果你想要自動登入，建立 Account.txt
+# 然後裡面填上 {"ID":"YourID", "Password":"YourPW"}
 try:
     with open('Account.txt', encoding = 'utf8') as AccountFile:
         Account = json.load(AccountFile)
@@ -58,11 +57,11 @@ Retry = True
 
 Startup = True
 
-PTTCrawler = PTT.Crawler(ID, Password, False)
+PTTCrawler = PTT.Library(ID, Password, False)
 if not PTTCrawler.isLoginSuccess():
     PTTCrawler.Log('Login fail')
 else:
-    PTTCrawler.setLogLevel(PTTCrawler.LogLevel_DEBUG)
+    #PTTCrawler.setLogLevel(PTTCrawler.LogLevel_DEBUG)
     LastIndex = 0
     LastIndexList = [0]
     
